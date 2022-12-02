@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const jwt = require("jsonwebtoken");
 
 const TrainerSchema = new mongoose.Schema(
   {
@@ -21,6 +22,17 @@ const TrainerSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+TrainerSchema.methods.generateAuthToken = function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+      username: this.username,
+      isAdmin: this.isAdmin,
+    },
+    process.env.JWT_KEY
+  );
+};
 
 const Trainer = mongoose.model("Trainer", TrainerSchema);
 

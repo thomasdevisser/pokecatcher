@@ -1,10 +1,11 @@
 const express = require("express");
+const auth = require("../../middleware/auth");
 const router = express.Router();
-const TrainerController = require("../../controllers/trainers");
+const trainerController = require("../../controllers/trainers");
 
-router.get("/", TrainerController.get);
-router.post("/", TrainerController.create);
+router.get("/", trainerController.get);
+router.post("/", trainerController.create);
 
-router.get("/:username", TrainerController.getOne);
+router.get("/:username", trainerController.getOne);
 
 module.exports = router;

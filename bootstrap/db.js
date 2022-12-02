@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Winston = require("winston");
 
 module.exports = () => {
   mongoose.connect(
